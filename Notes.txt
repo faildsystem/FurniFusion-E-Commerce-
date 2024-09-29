@@ -1,0 +1,3 @@
+collection product contains all of its reviews 
+collection wishlist contains all of its products ids
+collection Shopping Cart contains all of its Cart items

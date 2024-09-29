@@ -1,0 +1,6 @@
+@FurniFusion_E_Commerce__HostAddress = http://localhost:5111
+
+GET {{FurniFusion_E_Commerce__HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
