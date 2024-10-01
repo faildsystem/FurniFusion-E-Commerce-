@@ -6,9 +6,13 @@ namespace FurniFusion_E_Commerce_.Interfaces
 {
     public interface IProductManagerRepository
     {
-        Task<List<Product>> GetAllAsync(ProductFilter filter);
+        Task<List<Product>> GetAllProductsAsync(ProductFilter filter);
+        Task<List<Category>> GetAllCategoriesAsync();
         Task<Product> CreateProductAsync(CreateProductDto productDto, string creatorId);
-        Task DeleteAsync(int id);
-        //Task<Product> UpdateAsync(Product product);
+        Task<Product> UpdateProductAsync(UpdateProductDto productDto);
+        Task<Category> CreateCategoryAsync(CreateCategoryDto categoryDto, string creatorId);
+        Task<Category> UpdateCategoryAsync(UpdateCategoryDto categoryDto, string updatorId);
+        Task DeleteProductAsync(int id);
+        Task DeleteCategoryAsync(int id);
     }
 }
