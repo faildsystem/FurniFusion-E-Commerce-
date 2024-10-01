@@ -1,4 +1,6 @@
-﻿namespace FurniFusion_E_Commerce_.Dtos
+﻿// Ignore Spelling: Dto
+
+namespace FurniFusion_E_Commerce_.Dtos
 {
     public class LoginResponseDto
     {

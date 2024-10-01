@@ -1,15 +1,12 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿// Ignore Spelling: Wishlists
+
+using Microsoft.AspNetCore.Identity;
 
 
 namespace FurniFusion_E_Commerce_.Models;
 
 public partial class User: IdentityUser
 {
-
-    //public int? UserId { get; set; }
-
-    //public string? UserRole { get; set; }
-
     public string? FirstName { get; set; }
 
     public string? LastName { get; set; }

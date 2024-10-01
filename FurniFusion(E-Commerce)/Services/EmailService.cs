@@ -13,9 +13,15 @@ public class EmailService : IEmailService
         _emailSettings = emailSettings.Value;
     }
 
+    public async Task<string> GetEmailTemplate(string templateName)
+    {
+        var filePath = Path.Combine("Email Templates", $"{templateName}.html");
+        return await System.IO.File.ReadAllTextAsync(filePath);
+    }
+
     public async Task SendEmailAsync(string email, string subject, string message)
     {
-;        // Create the email message
+        ;        // Create the email message
         var emailMessage = new MimeMessage();
         emailMessage.From.Add(new MailboxAddress(_emailSettings.SenderName, _emailSettings.SenderEmail));
         emailMessage.To.Add(new MailboxAddress("", email));
@@ -36,7 +42,7 @@ public class EmailService : IEmailService
             {
                 await client.ConnectAsync(_emailSettings.Server, _emailSettings.Port, SecureSocketOptions.StartTls);
                 await client.AuthenticateAsync(_emailSettings.Username, _emailSettings.Password);
-                
+
                 await client.SendAsync(emailMessage);
                 await client.DisconnectAsync(true);
             }

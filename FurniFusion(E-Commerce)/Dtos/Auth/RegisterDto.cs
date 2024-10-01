@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿// Ignore Spelling: Username Furni Dtos Dto
+
+using System.ComponentModel.DataAnnotations;
 
 namespace FurniFusion_E_Commerce_.Dtos
 {
@@ -14,13 +16,14 @@ namespace FurniFusion_E_Commerce_.Dtos
         public string? LastName { get; set; }
 
         [Required]
-        public string? ImageUrl { get; set; }
-
-        [Required]
         [EmailAddress]
         public string? Email { get; set; }
 
         [Required]
         public string?  Password { get; set; }
+
+        [Required]
+        [Compare("Password")]
+        public string? ConfirmPassword { get; set; }
     }
 }

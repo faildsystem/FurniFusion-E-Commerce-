@@ -5,15 +5,15 @@ namespace FurniFusion_E_Commerce_.Dtos
     public class ResetPasswordDto
     {
 
-        [Required(ErrorMessage = "New password is required")]
-        [StringLength(100, MinimumLength = 8, ErrorMessage = "Password must be at least 8 characters long.")]
+        [Required]
         public string? NewPassword { get; set; }
 
-        [Required(ErrorMessage = "Confirm password is required")]
+        [Compare("NewPassword")]
         public string? ConfirmPassword { get; set; }
-
-
+        [Required]
+        [EmailAddress]
         public string? Email { get; set; }
+        [Required]
         public string? Token { get; set; }
     }
 }
