@@ -4,6 +4,6 @@ namespace FurniFusion_E_Commerce_
 {
     public interface ITokenService
     {
-        string CreateToken(User appUser);
+        string CreateToken(User appUser, IList<string> roles);
     }
 }

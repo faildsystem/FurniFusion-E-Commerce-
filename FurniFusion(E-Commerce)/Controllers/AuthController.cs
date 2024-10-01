@@ -64,11 +64,14 @@ namespace FurniFusion_E_Commerce_.Controllers
 
                     var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
 
-                    var confirmationLink = Url.Action("ConfirmEmail", "Auth", new { userId = user.Id, token = token }, Request.Scheme);
+                    var encodedToken = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(token));
+
+                    var confirmationLink = Url.Action("ConfirmEmail", "Auth", new { userId = user.Id, token = encodedToken }, Request.Scheme);
 
                     var template = await _emailService.GetEmailTemplate("emailVerification");
+
                     // Queue the email sending as a background job
-                    BackgroundJob.Enqueue(() => _emailService.SendEmailAsync(user.Email!, "Confirm Your Email", template.Replace("{{confirmationLink}}", confirmationLink!)));
+                    BackgroundJob.Enqueue(() => _emailService.SendEmailAsync(user.Email!, "Confirm Your FurniFusion Email", template.Replace("{{confirmationLink}}", confirmationLink!)));
 
                     // Commit the transaction
                     scope.Complete();
@@ -122,7 +125,9 @@ namespace FurniFusion_E_Commerce_.Controllers
                     });
 
                 // Generate JWT token
-                var token = _tokenService.CreateToken(user);
+
+                var userRoles = await _userManager.GetRolesAsync(user);
+                var token = _tokenService.CreateToken(user, userRoles);
 
 
 
@@ -131,6 +136,7 @@ namespace FurniFusion_E_Commerce_.Controllers
                 {
                     UserName = user.UserName,
                     Email = user.Email,
+                    Role = await _userManager.GetRolesAsync(user) as List<string>,
                     Token = token
                 });
             }
@@ -140,7 +146,6 @@ namespace FurniFusion_E_Commerce_.Controllers
             }
 
         }
-
 
         [HttpPost("logout")]
         [Authorize]
@@ -156,7 +161,6 @@ namespace FurniFusion_E_Commerce_.Controllers
                 return StatusCode(500, ex.Message);
             }
         }
-
 
         [HttpPost("sendEmailVerification")]
         public async Task<IActionResult> SendEmailVerification([FromBody] SendEmailVerificationDto sendEmailVerification)
@@ -181,7 +185,7 @@ namespace FurniFusion_E_Commerce_.Controllers
                 var confirmationLink = Url.Action("ConfirmEmail", "Auth", new { userId = user.Id, token = encodedToken }, Request.Scheme);
 
                 // Queue the email sending as a background job
-                BackgroundJob.Enqueue(() => _emailService.SendEmailAsync(user.Email!, "Confirm Your Email", template.Replace("{{confirmationLink}}", confirmationLink!)));
+                BackgroundJob.Enqueue(() => _emailService.SendEmailAsync(user.Email!, "Confirm Your FurniFusion Email", template.Replace("{{confirmationLink}}", confirmationLink!)));
 
                 return Ok("Email verification link has been sent to your email!");
             }
@@ -193,18 +197,22 @@ namespace FurniFusion_E_Commerce_.Controllers
         }
 
         [HttpGet("confirmEmail")]
-        public async Task<IActionResult> ConfirmEmail(ConfirmEmailDto confirmEmail)
+        public async Task<IActionResult> ConfirmEmail(string userId, string token)
         {
-            var user = await _userManager.FindByIdAsync(confirmEmail.UserId!);
+            var user = await _userManager.FindByIdAsync(userId);
 
             if (user == null)
             {
                 return NotFound();
             }
 
-            confirmEmail.Token = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(confirmEmail.Token!));
+            // Decode the Base64 URL-encoded token
+            byte[] decodedBytes = WebEncoders.Base64UrlDecode(token);
 
-            var result = await _userManager.ConfirmEmailAsync(user, confirmEmail.Token!);
+            // Convert the byte array back to a string
+            string decodedToken = Encoding.UTF8.GetString(decodedBytes);
+
+            var result = await _userManager.ConfirmEmailAsync(user, decodedToken);
 
             if (!result.Succeeded)
                 return BadRequest(result.Errors);

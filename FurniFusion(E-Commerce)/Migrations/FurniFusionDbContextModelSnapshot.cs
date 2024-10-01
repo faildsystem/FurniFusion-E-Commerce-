@@ -858,37 +858,37 @@ namespace FurniFusion_E_Commerce_.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "9874cba9-0384-4ef6-bd2b-0b3f6ec83220",
+                            Id = "7b7139c5-c14e-4c69-a443-a26607e607e6",
                             Name = "superAdmin",
                             NormalizedName = "SUPERADMIN"
                         },
                         new
                         {
-                            Id = "b1b61888-5a80-41c5-8d72-6eb01f2a1d56",
+                            Id = "cf220ff9-da90-42f7-ba63-a7457605e139",
                             Name = "user",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "c7567b44-2744-49aa-a609-976f74658a30",
+                            Id = "8cea34a8-ed7a-43cd-a880-711a30179d8d",
                             Name = "contentCreator",
                             NormalizedName = "CONTENTCREATOR"
                         },
                         new
                         {
-                            Id = "24ce08fa-d8f7-409c-89e5-ce740181215a",
+                            Id = "694df814-b4e8-4638-8238-e792c3c2da21",
                             Name = "productManager",
                             NormalizedName = "PRODUCTMANAGER"
                         },
                         new
                         {
-                            Id = "b06d831b-8eae-42c4-b144-ad0ba8c62133",
+                            Id = "89730ab6-4246-4881-8718-b104bbbc0aac",
                             Name = "marketingManager",
                             NormalizedName = "MARKETINGMANAGER"
                         },
                         new
                         {
-                            Id = "425c3d5d-dd18-4062-86d2-c73221227865",
+                            Id = "030c75f6-9304-4f55-96ed-16ba38319c41",
                             Name = "moderator",
                             NormalizedName = "MODERATOR"
                         });

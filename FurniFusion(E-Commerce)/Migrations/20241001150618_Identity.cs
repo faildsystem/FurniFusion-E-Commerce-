@@ -555,8 +555,12 @@ namespace FurniFusion_E_Commerce_.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "647bb4eb-87db-49b6-93f6-46e937a7561e", null, "admin", "ADMIN" },
-                    { "b5e146aa-65d2-4d90-a925-38956fb7f2b8", null, "user", "USER" }
+                    { "030c75f6-9304-4f55-96ed-16ba38319c41", null, "moderator", "MODERATOR" },
+                    { "694df814-b4e8-4638-8238-e792c3c2da21", null, "productManager", "PRODUCTMANAGER" },
+                    { "7b7139c5-c14e-4c69-a443-a26607e607e6", null, "superAdmin", "SUPERADMIN" },
+                    { "89730ab6-4246-4881-8718-b104bbbc0aac", null, "marketingManager", "MARKETINGMANAGER" },
+                    { "8cea34a8-ed7a-43cd-a880-711a30179d8d", null, "contentCreator", "CONTENTCREATOR" },
+                    { "cf220ff9-da90-42f7-ba63-a7457605e139", null, "user", "USER" }
                 });
 
             migrationBuilder.CreateIndex(

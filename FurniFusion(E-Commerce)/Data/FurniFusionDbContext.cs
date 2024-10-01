@@ -65,26 +65,6 @@ public partial class FurniFusionDbContext : IdentityDbContext<User>
                 {
                     Name = "user",
                     NormalizedName = "USER"
-                },
-                new IdentityRole
-                {
-                    Name = "contentCreator",
-                    NormalizedName = "CONTENTCREATOR"
-                },
-                new IdentityRole
-                {
-                    Name = "productManager",
-                    NormalizedName = "PRODUCTMANAGER"
-                },
-                new IdentityRole
-                {
-                    Name = "marketingManager",
-                    NormalizedName = "MARKETINGMANAGER"
-                },
-                new IdentityRole
-                {
-                    Name = "moderator",
-                    NormalizedName = "MODERATOR"
                 }
             };
 

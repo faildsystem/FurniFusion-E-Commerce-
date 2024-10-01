@@ -16,7 +16,7 @@ namespace FurniFusion_E_Commerce_.Services
             _configuration = configuration;
             _symmetricSecurityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:SigningKey"]));
         }
-        public string CreateToken(User appUser)
+        public string CreateToken(User appUser, IList<string> roles)
         {
             var claims = new List<Claim>
             {
@@ -24,6 +24,8 @@ namespace FurniFusion_E_Commerce_.Services
                 new Claim(JwtRegisteredClaimNames.GivenName, appUser.UserName),
                 new Claim(ClaimTypes.NameIdentifier, appUser.Id) // This claim holds the UserId
             };
+           
+            claims.AddRange(roles.Select(role => new Claim(ClaimTypes.Role, role)));
 
 
             var creds = new SigningCredentials(_symmetricSecurityKey, SecurityAlgorithms.HmacSha512Signature);

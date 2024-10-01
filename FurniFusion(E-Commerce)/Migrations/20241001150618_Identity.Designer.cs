@@ -13,7 +13,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace FurniFusion_E_Commerce_.Migrations
 {
     [DbContext(typeof(FurniFusionDbContext))]
-    [Migration("20240930002932_Identity")]
+    [Migration("20241001150618_Identity")]
     partial class Identity
     {
         /// <inheritdoc />
@@ -861,15 +861,39 @@ namespace FurniFusion_E_Commerce_.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "647bb4eb-87db-49b6-93f6-46e937a7561e",
-                            Name = "admin",
-                            NormalizedName = "ADMIN"
+                            Id = "7b7139c5-c14e-4c69-a443-a26607e607e6",
+                            Name = "superAdmin",
+                            NormalizedName = "SUPERADMIN"
                         },
                         new
                         {
-                            Id = "b5e146aa-65d2-4d90-a925-38956fb7f2b8",
+                            Id = "cf220ff9-da90-42f7-ba63-a7457605e139",
                             Name = "user",
                             NormalizedName = "USER"
+                        },
+                        new
+                        {
+                            Id = "8cea34a8-ed7a-43cd-a880-711a30179d8d",
+                            Name = "contentCreator",
+                            NormalizedName = "CONTENTCREATOR"
+                        },
+                        new
+                        {
+                            Id = "694df814-b4e8-4638-8238-e792c3c2da21",
+                            Name = "productManager",
+                            NormalizedName = "PRODUCTMANAGER"
+                        },
+                        new
+                        {
+                            Id = "89730ab6-4246-4881-8718-b104bbbc0aac",
+                            Name = "marketingManager",
+                            NormalizedName = "MARKETINGMANAGER"
+                        },
+                        new
+                        {
+                            Id = "030c75f6-9304-4f55-96ed-16ba38319c41",
+                            Name = "moderator",
+                            NormalizedName = "MODERATOR"
                         });
                 });
 
